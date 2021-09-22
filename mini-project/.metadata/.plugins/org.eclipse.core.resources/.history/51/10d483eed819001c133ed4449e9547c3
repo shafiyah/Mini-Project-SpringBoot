@@ -1,0 +1,12 @@
+package miniproject.endpoint.request;
+
+import java.io.Serializable;
+
+public class PemesananUpdateRequest implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private int idPemesanan;
+	private int idPemesan;
+	private String keterangan;
+	private String tanggal;
+	
+}

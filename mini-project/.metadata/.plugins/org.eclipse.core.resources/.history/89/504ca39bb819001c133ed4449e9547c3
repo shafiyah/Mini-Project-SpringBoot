@@ -1,0 +1,63 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.model.BarangModel;
+import miniproject.repository.BarangRepository;
+import miniproject.repository.dto.BarangDto;
+import miniproject.service.converter.BarangConverter;
+
+public class BarangService implements IBarangService{
+
+	private BarangRepository dao;
+	private BarangConverter converter;
+	
+	@Override
+	public BarangDto Create(BarangDto barangDto) {
+		BarangModel barang = converter.createFrom(barangDto);
+		return converter.createFrom(dao.save(barang));
+		return null;
+	}
+
+	@Override
+	public BarangDto findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BarangDto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BarangDto update(int id, BarangDto barang) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public BarangRepository getDao() {
+		return dao;
+	}
+
+	public void setDao(BarangRepository dao) {
+		this.dao = dao;
+	}
+
+	public BarangConverter getConverter() {
+		return converter;
+	}
+
+	public void setConverter(BarangConverter converter) {
+		this.converter = converter;
+	}
+	
+	
+}

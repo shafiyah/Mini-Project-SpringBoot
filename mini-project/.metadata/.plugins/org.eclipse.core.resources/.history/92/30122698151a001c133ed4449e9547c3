@@ -1,0 +1,5 @@
+package miniproject.endpoint.exception;
+
+public class RecordExceptionNotFound {
+
+}

@@ -1,0 +1,39 @@
+package miniproject.service.converter;
+
+import miniproject.model.PemesanModel;
+import miniproject.repository.dto.PemesanDto;
+
+public class PemesanConverter implements IPemesanConverter {
+	
+	public PemesanConverter() {
+		
+	}
+
+	@Override
+	public PemesanDto createFrom(PemesanModel pemesanEntity) {
+		PemesanDto pemesanDto = new PemesanDto();
+		pemesanDto.setAlamatPemesan(pemesanEntity.getAlamatPemesan());
+		pemesanDto.setIdPemesan(pemesanEntity.getIdPemesan());
+		pemesanDto.setNamaPemesan(pemesanEntity.getNamaPemesan());
+		pemesanDto.setTelphonePemesan(pemesanEntity.getTelphonePemesan());	
+		return pemesanDto;
+	}
+
+	@Override
+	public PemesanModel createFrom(PemesanDto pemesanDto) {
+		
+		return null;
+	}
+
+	@Override
+	public PemesanModel updateEntity(PemesanModel Entity, PemesanDto pemesanDto) {
+		PemesanDto pemesanDto = new PemesanDto();
+		pemesanDto.setAlamatPemesan(pemesanEntity.getAlamatPemesan());
+		pemesanDto.setIdPemesan(pemesanEntity.getIdPemesan());
+		pemesanDto.setNamaPemesan(pemesanEntity.getNamaPemesan());
+		pemesanDto.setTelphonePemesan(pemesanEntity.getTelphonePemesan());	
+		return null;
+	}
+	
+
+}

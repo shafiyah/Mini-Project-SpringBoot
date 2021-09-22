@@ -1,0 +1,12 @@
+package miniproject.endpoint.request.converte;
+
+import com.springboot.crud.endpoints.request.CreateDepartmentRequest;
+import com.springboot.crud.repository.dto.DepartmentDto;
+
+import miniproject.endpoint.request.BarangCreateRequest;
+import miniproject.repository.dto.BarangDto;
+
+public interface IBarangCreateConverter {
+    BarangCreateRequest converterToRequest( BarangDto dto);
+	BarangDto converterToDto( BarangCreateRequest request);
+}

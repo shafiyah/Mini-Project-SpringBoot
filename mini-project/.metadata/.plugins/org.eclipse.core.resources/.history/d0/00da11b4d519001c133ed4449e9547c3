@@ -1,0 +1,8 @@
+package miniproject.endpoint.request;
+
+import java.io.Serializable;
+
+public class DetailPemesananIdRequest implements Serializable{
+	private static final long serialVaersionUID = 1L;
+
+}

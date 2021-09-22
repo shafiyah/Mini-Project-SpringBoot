@@ -1,0 +1,5 @@
+package miniproject.endpoint.request;
+
+public class DetailPemesananIdRequest {
+
+}

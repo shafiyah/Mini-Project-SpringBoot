@@ -1,0 +1,58 @@
+package miniproject.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.transaction.Transactional;
+
+import miniproject.model.PemesanModel;
+import miniproject.model.PemesananModel;
+
+@Transactional
+public class PemesanRepository implements IPemesananRepository{
+
+	private EntityManager entityManager;
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+	@Override
+	public PemesananModel save(PemesananModel pemesan) {
+		entityManager.persist(pemesan);
+		return pemesan;
+	}
+
+	@Override
+	public PemesananModel findById(int id) {
+		String hql = "from pemesan where id_pemesan:id";
+		Query query = entityManager.createQuery(hql,PemesananModel.class);
+		query.setParameter("id", id);
+		return (PemesananModel)query.getSingleResult();
+	}
+
+	@Override
+	public List<PemesananModel> findAll() {
+		String query = "from pemesan ps";
+		List<PemesanModel> pemesan = entityManager.createQuery(query,PemesanModel.class).getResultList();
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PemesananModel merge(PemesananModel pemesan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

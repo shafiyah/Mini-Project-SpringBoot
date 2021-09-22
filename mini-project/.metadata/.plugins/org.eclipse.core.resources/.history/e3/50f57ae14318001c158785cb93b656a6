@@ -1,0 +1,100 @@
+package miniproject.model;
+
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "pemesanan")
+@JsonIgnoreProperties("hibernateLazyInitializer")
+public class PemesananModel {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_pemesanan")
+	private int idPemesanan;
+	@Column(name = "keterangan_pemesanan")
+	private String keteranganPemesanan;
+	@Column(name = "tanggal_pemesanan")
+	private String tanggalPemesanan;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_pemesan")
+	private PemesanModel pemesanPemesanan;
+	
+	@OneToMany(mappedBy = "detail_Pesanan", cascade = CascadeType.ALL)
+	private Set<DetailPemesanan> detailPesanan;
+
+	public PemesananModel() {
+	}
+
+	public PemesananModel(String keteranganPemesanan, String tanggalPemesanan,
+		DetailPemesanan detailPesanan) {
+		this.keteranganPemesanan = keteranganPemesanan;
+		this.tanggalPemesanan = tanggalPemesanan;
+		this.detailPesanan = Stream.of(detailPesanan).collect(Collectors.toSet());
+		this.detailPesanan.forEach(x -> x.setPemesananModel(this));
+	}
+
+	public int getIdPemesanan() {
+		return idPemesanan;
+	}
+
+	public void setIdPemesanan(int idPemesanan) {
+		this.idPemesanan = idPemesanan;
+	}
+
+	public String getKeteranganPemesanan() {
+		return keteranganPemesanan;
+	}
+
+	public void setKeteranganPemesanan(String keteranganPemesanan) {
+		this.keteranganPemesanan = keteranganPemesanan;
+	}
+
+	public String getTanggalPemesanan() {
+		return tanggalPemesanan;
+	}
+
+	public void setTanggalPemesanan(String tanggalPemesanan) {
+		this.tanggalPemesanan = tanggalPemesanan;
+	}
+
+	public PemesanModel getPemesanPemesanan() {
+		return pemesanPemesanan;
+	}
+
+	public void setPemesanPemesanan(PemesanModel pemesanPemesanan) {
+		this.pemesanPemesanan = pemesanPemesanan;
+	}
+
+	public Set<DetailPemesanan> getDetailPesanan() {
+		return detailPesanan;
+	}
+
+	public void setDetailPesanan(Set<DetailPemesanan> detailPesanan) {
+		this.detailPesanan = detailPesanan;
+	}
+	
+	
+	
+	
+	
+}

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation"
+			value="classpath:WEB-INF/persistence.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName"
+			value="userPersistenceUnit" />
+		<property name="jpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.archive.autodetection">class,hbm</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="barangRepo"
+		class="miniproject.repository.BarangRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="pemesanRepo"
+		class="miniproject.repository.PemesanRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="pemesananRepo"
+		class="miniproject.repository.PemesananRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="detailpemesananRepo"
+		class="miniproject.repository.DetailPemesananRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="barangService"
+		class="miniproject.service.BarangService">
+		<property name="dao" ref="barangRepo"></property>
+		<property name="converter" ref="barangConverter"></property>
+	</bean>
+	<bean id="barangConverter"
+		class="miniproject.service.converter.BarangConverter">
+	</bean>
+	<bean id="barangDto"
+		class="miniproject.repository.dto.BarangDto">
+	</bean>
+	<bean id="barangCreateRequest"
+	    class="miniproject.endpoint.request.BarangCreateRequest">
+	</bean>
+	<bean id="barangIdRequest"
+	    class="miniproject.endpoint.request.BarangIdRequest">
+	</bean>
+	<bean id="barangCreateConverter"
+	    class="miniproject.endpoint.request.converter.impl.BarangCreateConverter">
+	</bean>
+	<bean id="barangResponse"
+		class="miniproject.endpoint.response.BarangResponse">
+	</bean>
+	<bean id="barangResponseConverter"
+		class="miniproject.endpoint.response.converter.BarangResponseConverter">
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="org.postgresql.Driver"/>
+		<property name="url"
+			value="jdbc:postgresql://localhost:5432/MiniProject" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+	</bean>
+</beans>

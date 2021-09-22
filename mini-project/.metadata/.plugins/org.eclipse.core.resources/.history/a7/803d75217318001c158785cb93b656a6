@@ -1,0 +1,8 @@
+package miniproject.repository.dto;
+
+import java.io.Serializable;
+
+public class BarangDto implements Serializable {
+	
+
+}

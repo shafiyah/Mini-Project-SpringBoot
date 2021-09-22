@@ -1,0 +1,32 @@
+package miniproject.endpoint.response.converter;
+
+
+import miniproject.endpoint.response.DetailPemesananResponse;
+import miniproject.model.DetailPemesananModel;
+import miniproject.repository.dto.DetailPemesananDto;
+
+
+public class DetailPemesananResponseConverter implements IDetailPemesananResponseConverter{
+
+	@Override
+	public DetailPemesananResponse convertToResponse(DetailPemesananDto detailPemesananDto) {
+		DetailPemesananResponse response = new DetailPemesananResponse();
+		response.setIdDetailpemesanan(detailPemesananDto.getIdDetailpemesanan());
+		response.setIdPemesanan(detailPemesananDto.getIdPemesanan());
+		response.setidBarang(Integer.toString(detailPemesananDto.getIdBarang()));
+		response.setJumlahBarang(detailPemesananDto.getJumlah_barang());
+		return response;
+	}
+
+	@Override
+	public DetailPemesananResponse convertToResponse(DetailPemesananModel detailPemesanan) {
+		DetailPemesananResponse respone = new DetailPemesananResponse();
+		respone.setIdDetailpemesanan(detailPemesanan.getIdDetailpemesanan());
+		respone.setIdPemesanan(detailPemesanan.getIdDetailpemesanan());
+		respone.setidBarang(detailPemesanan.getBarang().getNamaBarang());
+		respone.setJumlahBarang(detailPemesanan.getJumlah_barang());
+		return response;
+	}
+	
+
+}

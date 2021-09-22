@@ -1,0 +1,25 @@
+package miniproject.endpoint.request.converte.impl;
+
+import miniproject.endpoint.request.BarangCreateRequest;
+import miniproject.endpoint.request.converter.IBarangCreateConverter;
+import miniproject.repository.dto.BarangDto;
+
+public class BarangUpdateConverter implements IBarangCreateConverter {
+
+	@Override
+	public BarangCreateRequest converterToRequest(BarangDto dto) {
+		BarangCreateRequest request  = new BarangCreateRequest();
+		request.setDeskripsiBarang(dto.getDeskripsiBarang());
+		request.setNamaBarang(dto.getNamaBarang());
+		request.setStock(dto.getStokBarang());
+		return request;
+	}
+	@Override
+	public BarangDto converterToDto(BarangCreateRequest request) {
+		BarangDto dto  = new BarangDto();
+		dto.setNamaBarang(request.getNamaBarang());
+		dto.setDeskripsiBarang(request.getDeskripsiBarang());
+		dto.setStokBarang(request.getStock());
+		return dto;
+	}	
+}

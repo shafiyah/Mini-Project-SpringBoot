@@ -1,0 +1,5 @@
+package miniproject.repository.dto;
+
+public interface IPesananRepository {
+
+}

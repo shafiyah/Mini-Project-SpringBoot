@@ -1,0 +1,14 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.model.PemesananModel;
+
+public interface IPemesananService {
+
+	public PemesananModel save(PemesaannModel pemesanan);
+	public PemesananModel findById(int id);
+	public List<PemesananModel> findAll();
+	public void deleteById(int id);
+	public PemesananModel update (int id, PemesananModel pemesan);
+}

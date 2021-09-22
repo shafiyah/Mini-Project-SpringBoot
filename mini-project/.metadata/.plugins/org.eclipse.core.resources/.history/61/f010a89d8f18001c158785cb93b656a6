@@ -1,0 +1,77 @@
+package com.springboot.crud.endpoints.controller;
+
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.springboot.crud.endpoints.request.CreateDepartmentRequest;
+import com.springboot.crud.endpoints.request.IDRequest;
+import com.springboot.crud.endpoints.request.UpdateDeparmentRequest;
+import com.springboot.crud.endpoints.request.requestconverter.CreateDepartmentRequestConverter;
+import com.springboot.crud.endpoints.request.requestconverter.UpdateDepartmentRequestConverter;
+import com.springboot.crud.endpoints.resource.APIPath;
+import com.springboot.crud.endpoints.response.DepartmentResponse;
+import com.springboot.crud.endpoints.response.responseconverter.DepartmentResponseConverter;
+import com.springboot.crud.repository.dto.DepartmentDto;
+import com.springboot.crud.service.DepartmentService;
+
+@RestController
+public class DepartmentController {
+
+	@Autowired
+	private DepartmentService service;
+	@Autowired
+	private DepartmentResponseConverter departmentResponseConverter;
+	@Autowired
+	private CreateDepartmentRequestConverter createDepartmentRequestConverter;
+	@Autowired
+	private UpdateDepartmentRequestConverter updateDepartmentRequestConverter;
+	
+
+	public DepartmentController(DepartmentService service) {
+		this.service = service;
+	}
+
+	@PostMapping(value = APIPath.FIND_ALL_DEPARTMENT)
+	public ResponseEntity<List<DepartmentResponse>>getAllDepartment() {
+		List<DepartmentResponse> response = departmentResponseConverter.convertToResponses(service.findAll());
+		return new ResponseEntity<List<DepartmentResponse>>(response,HttpStatus.OK);
+	}
+	
+	@PostMapping(value = APIPath.CREATE_DEPARTMENT)
+	public ResponseEntity<DepartmentResponse> createDepartment(@Valid@RequestBody CreateDepartmentRequest request) {
+		DepartmentDto departmentDto=service.create(createDepartmentRequestConverter.converterToDto(request));
+		DepartmentResponse response =departmentResponseConverter.convertToResponse(departmentDto);
+		return new ResponseEntity<DepartmentResponse>(response, "", HttpStatus.OK);
+	}
+	
+	
+	@PostMapping(value = APIPath.FIND_DEPARTMENT_BYID)
+	public ResponseEntity<DepartmentResponse> getDepartmentById(@RequestBody IDRequest request) {
+		DepartmentDto departmentDto = service.findById(request.getId());
+		DepartmentResponse response = departmentResponseConverter.convertToResponse(departmentDto);
+		return new ResponseEntity<DepartmentResponse>(response, HttpStatus.OK);
+	}
+
+	@PostMapping(value = APIPath.UPDATE_DEPARTMENT)
+	public ResponseEntity<DepartmentResponse> updateEmployee(@Valid @RequestBody UpdateDeparmentRequest request) {
+		DepartmentDto departmentDto = service.update(updateDepartmentRequestConverter.converterToDto(request));
+		DepartmentResponse response = departmentResponseConverter.convertToResponse(departmentDto);
+		return new ResponseEntity<DepartmentResponse>(response, HttpStatus.OK);
+	}
+
+	@DeleteMapping(value = APIPath.DELETE_DEPARTMENT)
+	public ResponseEntity<String> deleteDepartmentById(@RequestBody IDRequest id) {
+		service.deleteByID(id.getId());
+		return new ResponseEntity<String>("deleted",HttpStatus.OK);
+	}
+	
+}

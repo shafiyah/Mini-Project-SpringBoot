@@ -1,0 +1,51 @@
+package miniproject.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
+import miniproject.model.DetailPemesananModel;
+
+public class DetailBarangRepository implements IDetailPesananRepository{
+
+	private EntityManager entityManager;
+	
+	@Override
+	public DetailPemesananModel save(DetailPemesananModel detailpemesanan) {
+		entityManager.persist(detailpemesanan);
+		return detailpemesanan;
+	}
+
+	@Override
+	public DetailPemesananModel findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DetailPemesananModel> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public DetailPemesananModel merge(DetailPemesananModel detailPemesanan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+
+}

@@ -1,0 +1,48 @@
+package miniproject.endpoint.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import miniproject.endpoint.handler.PemesananHandler;
+import miniproject.endpoint.request.BarangCreateRequest;
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.endpoint.request.converter.impl.PemesananCreateConvert;
+import miniproject.endpoint.request.converter.impl.PemesananUpdateConverter;
+import miniproject.endpoint.response.BarangResponse;
+import miniproject.endpoint.response.PemesananResponse;
+import miniproject.repository.dto.BarangDto;
+import miniproject.repository.dto.PemesananDto;
+import miniproject.service.PemesananService;
+
+
+@RestController()
+public class PemesananController {
+	
+	@Autowired
+	private PemesananService service;
+	@Autowired
+	private PemesananCreateConvert pemesananCreateConverter;
+	@Autowired
+	private PemesananUpdateConverter pemesananUpdateConverter;
+	@Autowired
+	private PemesananResponse pemesananResponConverter;
+	@Autowired
+	private PemesananHandler pemesanananHandler;
+	
+	@PostMapping(value = "/api/pemesanan/create")
+	public ResponseEntity<PemesananResponse> pemesananBarang (@RequestBody PemesananCreateRequest request){
+		List<PemesananDto> pemesananDtos = pemesananCreateConverter.toCompanyProductDtoList(request);
+		List<CompanyProduct> companyProducts = companyProductHandler.companyProductRegister(companyProductDto);
+		BarangDto barangDto = service.Create(barangCreateConverter.converterToDto(request));
+		BarangResponse barangResponse = barangResponConverter.convertToResponse(barangDto);
+		return new ResponseEntity<BarangResponse>(barangResponse, HttpStatus.OK);
+	}
+
+
+}

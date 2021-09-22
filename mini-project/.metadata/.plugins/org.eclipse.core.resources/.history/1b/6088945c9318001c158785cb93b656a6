@@ -1,0 +1,8 @@
+package miniproject.repository;
+
+import javax.transaction.Transactional;
+
+@Transactional
+public class BarangRepository implements IBarangRepository {
+
+}

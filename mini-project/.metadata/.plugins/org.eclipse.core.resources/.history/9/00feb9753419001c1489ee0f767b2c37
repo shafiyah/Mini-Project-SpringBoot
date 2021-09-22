@@ -1,0 +1,31 @@
+package miniproject.service.converter;
+
+import miniproject.model.PemesanModel;
+import miniproject.repository.dto.PemesanDto;
+
+public class PemesanConverter implements IPemesanConverter {
+	
+	public PemesanConverter() {
+		
+	}
+
+	@Override
+	public PemesanDto createFrom(PemesanModel pemesanEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PemesanModel createFrom(PemesanDto pemesanDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PemesanModel updateEntity(PemesanModel Entity, PemesanDto barangDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

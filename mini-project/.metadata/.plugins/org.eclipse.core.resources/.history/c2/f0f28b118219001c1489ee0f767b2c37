@@ -1,0 +1,59 @@
+package miniproject.repository.dto;
+
+import java.io.Serializable;
+
+import miniproject.model.BarangModel;
+import miniproject.model.PemesananModel;
+
+
+
+public class DetailPemesananDto implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	private int idDetailpemesanan;
+	private PemesananDto pemesanan;
+	private BarangDto barang;
+	private int jumlah_barang;
+	
+	public DetailPemesananDto() {
+	}
+
+	public DetailPemesananDto(int idDetailpemesanan, PemesananModel pemesanan, BarangModel barang, int jumlah_barang) {
+		super();
+		this.pemesanan = pemesanan;
+		this.barang = barang;
+		this.jumlah_barang = jumlah_barang;
+	}
+
+	public int getIdDetailpemesanan() {
+		return idDetailpemesanan;
+	}
+
+	public void setIdDetailpemesanan(int idDetailpemesanan) {
+		this.idDetailpemesanan = idDetailpemesanan;
+	}
+
+	public PemesananModel getPemesanan() {
+		return pemesanan;
+	}
+
+	public void setPemesanan(PemesananModel pemesanan) {
+		this.pemesanan = pemesanan;
+	}
+
+	public BarangModel getBarang() {
+		return barang;
+	}
+
+	public void setBarang(BarangModel barang) {
+		this.barang = barang;
+	}
+
+	public int getJumlah_barang() {
+		return jumlah_barang;
+	}
+
+	public void setJumlah_barang(int jumlah_barang) {
+		this.jumlah_barang = jumlah_barang;
+	}
+}

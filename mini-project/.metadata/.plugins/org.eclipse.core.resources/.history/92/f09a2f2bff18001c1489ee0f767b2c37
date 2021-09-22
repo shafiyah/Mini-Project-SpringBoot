@@ -1,0 +1,53 @@
+package miniproject.repository;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
+
+import miniproject.model.PemesananModel;
+
+@Transactional
+public class PemesananRepository implements IPemesananRepository {
+
+	private EntityManager entityManager;
+	
+	@Override
+	public PemesananModel save(PemesananModel pemesan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PemesananModel findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PemesananModel> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public PemesananModel merge(PemesananModel pemesan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public EntityManager getEntityManager() {
+		return entityManager;
+	}
+
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
+	
+}

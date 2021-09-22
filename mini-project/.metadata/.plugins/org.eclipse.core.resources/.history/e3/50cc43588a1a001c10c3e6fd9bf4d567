@@ -1,0 +1,62 @@
+package miniproject.endpoint.response;
+
+import java.io.Serializable;
+import java.util.List;
+
+public class PemesananResponse implements Serializable {
+	private static final long serialVersionUID = 1L;
+	private int idPemesan;
+	private int idPemesanan;
+	private String tanggalPemesanan;
+	private String keteranganPesanan;
+	private List<DetailPemesananResponse> listDetailPemesananResponse;
+	public PemesananResponse() {}
+	
+	public PemesananResponse(int idPemesan, int idPemesanan, String tanggalPemesanan, String keteranganPesanan,
+			List<DetailPemesananResponse> listDetailPemesananResponse) {
+		super();
+		this.idPemesan = idPemesan;
+		this.idPemesanan = idPemesanan;
+		this.tanggalPemesanan = tanggalPemesanan;
+		this.keteranganPesanan = keteranganPesanan;
+		this.listDetailPemesananResponse = listDetailPemesananResponse;
+	}
+	
+
+	public int getIdPemesan() {
+		return idPemesan;
+	}
+
+	public void setIdPemesan(int idPemesan) {
+		this.idPemesan = idPemesan;
+	}
+
+	
+	public int getIdPemesanan() {
+		return idPemesanan;
+	}
+	public void setIdPemesanan(int idPemesanan) {
+		this.idPemesanan = idPemesanan;
+	}
+	public String getTanggalPemesanan() {
+		return tanggalPemesanan;
+	}
+	public void setTanggalPemesanan(String tanggalPemesanan) {
+		this.tanggalPemesanan = tanggalPemesanan;
+	}
+	public String getKeteranganPesanan() {
+		return keteranganPesanan;
+	}
+	public void setKeteranganPesanan(String keteranganPesanan) {
+		this.keteranganPesanan = keteranganPesanan;
+	}
+	public List<DetailPemesananResponse> getListDetailPemesananResponse() {
+		return listDetailPemesananResponse;
+	}
+	public void setListDetailPemesananResponse(List<DetailPemesananResponse> listDetailPemesananResponse) {
+		this.listDetailPemesananResponse = listDetailPemesananResponse;
+	}
+	
+	
+	
+}

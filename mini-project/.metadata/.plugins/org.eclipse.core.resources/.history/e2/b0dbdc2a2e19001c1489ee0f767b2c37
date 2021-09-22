@@ -1,0 +1,26 @@
+package miniproject.service.converter;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import miniproject.model.PemesanModel;
+import miniproject.repository.dto.PemesanDto;
+
+
+
+public interface IPemesanConverter {PemesanDto createFrom(PemesanModel pemesanEntity);
+
+PemesanModel createFrom(PemesanDto pemesanDto);
+
+PemesanModel updateEntity(BarangModel Entity ,BarangDto barangDto);
+
+default List<BarangDto> createFromEntities(Collection<BarangModel> barangs){
+	return barangs.stream().map(this::createFrom).collect(Collectors.toList());
+}
+
+default List<BarangModel> createFromDtos(Collection< BarangDto> barangs){
+	return barangs.stream().map(this::createFrom).collect(Collectors.toList());
+}
+
+}

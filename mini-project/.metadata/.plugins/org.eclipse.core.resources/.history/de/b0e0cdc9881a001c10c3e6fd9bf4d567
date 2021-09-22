@@ -1,0 +1,18 @@
+package miniproject.endpoint.response.converter;
+
+import miniproject.endpoint.response.PemesanResponse;
+import miniproject.endpoint.response.PemesananResponse;
+import miniproject.repository.dto.PemesananDto;
+
+
+public class PemesanaResponseConverter implements IPemesananResponseConverter{
+
+	@Override
+	public PemesananResponse convertToResponse(PemesananDto pemesananDto) {
+		PemesananResponse response = new PemesanResponse();
+		response.setIdP(pemesananDto.getIdPemesanan());
+		return null;
+	}
+
+
+}

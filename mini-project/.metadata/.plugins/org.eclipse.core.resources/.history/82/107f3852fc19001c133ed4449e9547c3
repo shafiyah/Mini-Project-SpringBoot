@@ -1,0 +1,22 @@
+package miniproject.endpoint.request.converte.impl;
+
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.endpoint.request.PemesananUpdateRequest;
+import miniproject.endpoint.request.converte.IPemesananUpdateConverter;
+import miniproject.repository.dto.PemesananDto;
+
+public class PemesananUpdateConverter implements IPemesananUpdateConverter{
+
+	@Override
+	public PemesananUpdateRequest converterToRequest(PemesananDto dto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PemesananDto converterToDto(PemesananUpdateRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

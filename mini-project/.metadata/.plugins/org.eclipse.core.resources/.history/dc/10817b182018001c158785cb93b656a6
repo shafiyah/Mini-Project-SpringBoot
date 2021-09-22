@@ -1,0 +1,43 @@
+package miniproject.model;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
+@Data
+@Entity
+@EqualsAndHashCode(exclude="barang")
+@Table(name="barang")
+@JsonIgnoreProperties("hibernateLazyInitializer")
+
+public class BarangModel {
+	
+	private int barangId;
+	private String namaBarang;
+	private String deskripsiBarang;
+	private int stokBarang;
+	private int hargaBarang;
+	
+	
+	public BarangModel() {
+		super();
+	}
+
+
+	public BarangModel(int barangId, String namaBarang, String deskripsiBarang, int stokBarang, int hargaBarang) {
+		super();
+		this.barangId = barangId;
+		this.namaBarang = namaBarang;
+		this.deskripsiBarang = deskripsiBarang;
+		this.stokBarang = stokBarang;
+		this.hargaBarang = hargaBarang;
+	}
+	
+	
+	
+	
+}

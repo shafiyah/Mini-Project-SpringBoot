@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+	<bean id="entityManagerFactory"
+		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceXmlLocation"
+			value="classpath:WEBs-INF/persistence.xml" />
+		<property name="dataSource" ref="dataSource" />
+		<property name="persistenceUnitName"
+			value="userPersistenceUnit" />
+		<property name="jpaVendorAdapter">
+			<bean
+				class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+		</property>
+		<property name="jpaProperties">
+			<props>
+				<prop key="hibernate.archive.autodetection">class,hbm</prop>
+				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<prop key="hibernate.dialect">org.hibernate.dialect.PostgreSQL95Dialect</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="barangRepo"
+		class="miniproject.repository.BarangRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="pemesanRepo"
+		class="miniproject.repository.PemesanRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="pemesananRepo"
+		class="miniproject.repository.PemesananRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	<bean id="detailpemesananRepo"
+		class="miniproject.repository.DetailPemesananRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="departmentService"
+		class="com.springboot.crud.service.DepartmentService">
+		<property name="dao" ref="departmentRepo"></property>
+		<property name="converter" ref="departmentConverter"></property>
+	</bean>
+	  
+	<bean id="employeeRepo"
+		class="com.springboot.crud.repository.EmployeeRepository">
+		<property name="entityManager">
+			<bean
+				class="org.springframework.orm.jpa.support.SharedEntityManagerBean">
+				<property name="entityManagerFactory"
+					ref="entityManagerFactory" />
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="employeeService"
+		class="com.springboot.crud.service.EmployeeService">
+		<property name="dao" ref="employeeRepo"></property>
+		<property name="converter" ref="employeeConverter"></property>
+	</bean>
+	<bean id="employeeDto"
+		class="com.springboot.crud.repository.dto.EmployeeDto">
+	</bean>
+	<bean id="departmentDto"
+		class="com.springboot.crud.repository.dto.DepartmentDto">
+	</bean>
+	<bean id="employeeConverter"
+		class="com.springboot.crud.service.serviceconverter.EmployeeConverter"> 
+	</bean>
+	<bean id="departmentConverter"
+		class="com.springboot.crud.service.serviceconverter.DepartmentConverter">	
+	</bean>
+	
+	<bean id="createDepartmentRequest"
+	    class="com.springboot.crud.endpoints.request.CreateDepartmentRequest">
+	</bean>
+	<bean id="createEmployeeRequest"
+	    class="com.springboot.crud.endpoints.request.CreateEmployeeRequest">
+	</bean>
+	<bean id="updateDepartmentRequest"
+	    class="com.springboot.crud.endpoints.request.UpdateDeparmentRequest">
+	</bean>
+	<bean id="updateEmployeeRequest"
+	    class="com.springboot.crud.endpoints.request.UpdateEmployeeRequest">
+	</bean>
+	<bean id="iDRequest"
+	    class="com.springboot.crud.endpoints.request.IDRequest">
+	</bean>
+	<bean id="nameRequest"
+	    class="com.springboot.crud.endpoints.request.NameRequest">
+	</bean>
+	
+	<bean id="createDepartmentRequestConverter"
+	    class="com.springboot.crud.endpoints.request.requestconverter.CreateDepartmentRequestConverter">
+	</bean>
+	<bean id="createEmployeeRequestConverter"
+	    class="com.springboot.crud.endpoints.request.requestconverter.CreateEmployeeRequestConverter">
+	</bean>
+	<bean id="updateDepartmentRequestConverter"
+	    class="com.springboot.crud.endpoints.request.requestconverter.UpdateDepartmentRequestConverter">
+	</bean>
+	<bean id="updateEmployeeRequestConverter"
+	    class="com.springboot.crud.endpoints.request.requestconverter.UpdateEmployeeRequestConverter">
+	</bean>
+	
+	<bean id="departmentResponse"
+		class="com.springboot.crud.endpoints.response.DepartmentResponse">
+	</bean>
+	
+	<bean id="employeeResponse"
+		class="com.springboot.crud.endpoints.response.EmployeeResponse">
+	</bean>
+	
+	<bean id="departmentResponseConverter"
+		class="com.springboot.crud.endpoints.response.responseconverter.DepartmentResponseConverter">
+	</bean>
+	
+	<bean id="employeeResponseConverter"
+		class="com.springboot.crud.endpoints.response.responseconverter.EmployeeResponseConverter">
+	</bean>
+	
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="org.postgresql.Driver"/>
+		<property name="url"
+			value="jdbc:postgresql://localhost:5432/MiniProject" />
+		<property name="username" value="postgres" />
+		<property name="password" value="postgres" />
+	</bean>
+	<bean id="transactionManager"
+		class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory"
+			ref="entityManagerFactory" />
+	</bean>
+	
+	<bean id="persistenceExceptionTranslationPostProcessor"
+		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+	</bean>
+</beans>

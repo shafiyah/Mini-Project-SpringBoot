@@ -1,0 +1,17 @@
+package miniproject.endpoint.response.converter;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import miniproject.endpoint.response.DetailPemesananResponse;
+import miniproject.repository.dto.DetailPemesananDto;
+
+public interface IDetailPemesananResponseConverter {
+	DetailPemesananResponse convertToResponse (DetailPemesananDto detailPemesananDto);
+
+	default List<DetailPemesananResponse> convertToResponses(Collection<DetailPemesananDto> detailPemesanans){
+		return detailPemesanans.stream().map(this::convertToResponse).collect(Collectors.toList());
+	}
+
+}

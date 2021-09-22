@@ -1,0 +1,46 @@
+package miniproject.service.converter;
+
+import miniproject.model.DetailPemesananModel;
+import miniproject.model.PemesananModel;
+import miniproject.repository.dto.DetailPemesananDto;
+import miniproject.repository.dto.PemesananDto;
+
+
+public class DetailPemesananConverter implements IDetailPemesananConverter{
+
+	public DetailPemesananConverter() {
+	}
+
+	@Override
+	public DetailPemesananDto createFrom(DetailPemesananModel detailPemesananEntity) {
+		DetailPemesananDto detailPemesanan =  new DetailPemesananDto();
+		detailPemesanan.setIdDetailpemesanan(detailPemesanan.getIdDetailpemesanan());;
+		detailPemesanan.setIdPemesanan(detailPemesananEntity.getPemesanan().getIdPemesanan());
+		detailPemesanan.setJumlah_barang(detailPemesananEntity.getJumlah_barang());;
+		return detailPemesanan;
+	}
+
+	@Override
+	public DetailPemesananModel createFrom(DetailPemesananDto detailPemesananDto) {
+		
+		return null;
+	}
+
+	@Override
+	public DetailPemesananModel updateEntity(DetailPemesananModel Entity, DetailPemesananDto barangDto) {
+		
+		return null;
+	}
+	
+    public PemesananModel convertPemesananEntity(PemesananDto pemesananDto) {
+    	PemesananConverter pemesananConveter = new PemesananConverter();
+    	return pemesananConveter.createFrom(pemesananDto);
+    }
+    
+    public PemesananDto convertPemesananDto (PemesananModel pemesanan) {
+    	PemesananConverter pemesananConverter = new PemesananConverter();
+    	return pemesananConverter.createFrom(pemesanan);
+    }
+    
+    
+}

@@ -1,0 +1,62 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.model.PemesananModel;
+import miniproject.repository.PemesananRepository;
+import miniproject.repository.dto.PemesanDto;
+import miniproject.repository.dto.PemesananDto;
+import miniproject.service.converter.PemesananConverter;
+
+public class PemesananService implements IPemesananService{
+
+	private PemesananConverter converter; 
+	private PemesananRepository dao;
+	
+	
+	public PemesananConverter getConverter() {
+		return converter;
+	}
+
+	public void setConverter(PemesananConverter converter) {
+		this.converter = converter;
+	}
+
+	public PemesananRepository getDao() {
+		return dao;
+	}
+
+	public void setDao(PemesananRepository dao) {
+		this.dao = dao;
+	}
+
+	@Override
+	public PemesananDto Create(PemesananDto pemesananDto) {
+		PemesananModel pemesanan= converter.createFrom(pemesananDto);
+		return converter.createFrom(dao.save(pemesanan));
+	}
+
+	@Override
+	public PemesananDto findById(int id) {
+		PemesananDto pemesanans  = converter.createFrom(dao.findById(id));
+		return pemesanans;
+	}
+
+	@Override
+	public PemesananDto update(PemesananDto pemesanan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<PemesananDto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+}

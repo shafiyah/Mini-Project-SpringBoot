@@ -1,0 +1,16 @@
+package miniproject.endpoint.response.converter;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import miniproject.endpoint.response.PemesananResponse;
+import miniproject.repository.dto.PemesananDto;
+
+public interface IPemesananResponse {
+	PemesananResponse convertToResponse (PemesananDto pemesananDto);
+
+	default List<PemesananResponse> convertToResponses(Collection<PemesananDto> pemesanans){
+		return pemesanans.stream().map(this::convertToResponse).collect(Collectors.toList());
+	}
+}

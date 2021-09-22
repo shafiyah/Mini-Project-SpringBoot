@@ -1,0 +1,19 @@
+package miniproject.endpoint.request.converter;
+
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import miniproject.endpoint.request.DetailPemesananCreateRequest;
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.model.DetailPemesananModel;
+import miniproject.repository.dto.DetailPemesananDto;
+import miniproject.repository.dto.PemesananDto;
+
+public interface IPemesananCreateConverter {
+	 PemesananCreateRequest converterToRequest( PemesananDto dto);
+	 PemesananDto converterToDto( PemesananCreateRequest request);
+	 DetailPemesananDto convertTodtod(DetailPemesananCreateRequest request);
+	 
+}

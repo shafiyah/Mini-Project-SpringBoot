@@ -1,0 +1,35 @@
+package miniproject.service.converter;
+
+import miniproject.model.BarangModel;
+import miniproject.repository.dto.BarangDto;
+
+public class BarangConverter implements IBarangConverter {
+	
+	public BarangConverter() {
+		
+	}
+
+	@Override
+	public BarangDto createFrom(BarangModel barangEntity) {
+		BarangDto barangDto= new BarangDto();
+		barangDto.setDeskripsiBarang(deskripsiBarang);
+		barangDto.setIdBarang(idBarang);
+		barangDto.setNamaBarang(namaBarang);
+		barangDto.setStokBarang(stokBarang);	
+		return barangDto;
+	}
+
+	@Override
+	public BarangModel createFrom(BarangDto barangDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BarangModel updateEntity(BarangModel Entity, BarangDto barangDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

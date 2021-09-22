@@ -1,0 +1,8 @@
+package miniproject.endpoint.response;
+
+import java.io.Serializable;
+
+public class DetailPemesananResponse implements Serializable {
+	private static final long serialVersionUID = 1L;
+
+}

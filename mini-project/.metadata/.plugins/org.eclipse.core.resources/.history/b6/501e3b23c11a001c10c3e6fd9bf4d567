@@ -1,0 +1,27 @@
+package miniproject.endpoint.request.converter.impl;
+
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.endpoint.request.converter.IPemesananCreateConverter;
+import miniproject.repository.dto.PemesananDto;
+
+public class PemesananCreateConvert implements IPemesananCreateConverter{
+
+	@Override
+	public PemesananCreateRequest converterToRequest(PemesananDto dto) {
+		PemesananCreateRequest request = new PemesananCreateRequest();
+		request.setIdPemesan(dto.getPemesan());
+		request.setKeterangan(dto.getKeteranganPemesanan());
+		request.setTanggalPemesanan(dto.getTanggalPemesanan());
+		return request;
+	}
+
+	@Override
+	public PemesananDto converterToDto(PemesananCreateRequest request) {
+		PemesananDto dto =  new PemesananDto();
+		dto.setKeteranganPemesanan(request.getKeterangan());
+		dto.setTanggalPemesanan(request.getTanggalPemesanan());
+		dto.setPemesan(request.getIdPemesan());
+		return dto;
+	}
+ 
+}

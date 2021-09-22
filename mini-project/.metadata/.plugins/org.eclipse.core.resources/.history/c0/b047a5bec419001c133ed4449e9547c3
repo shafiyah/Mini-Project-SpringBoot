@@ -1,0 +1,61 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.model.DetailPemesananModel;
+import miniproject.repository.DetailPemesananRepository;
+import miniproject.repository.dto.DetailPemesananDto;
+import miniproject.service.converter.DetailPemesananConverter;
+
+public class DetailPemesanaService implements IDetailPemesananService {
+
+	private DetailPemesananRepository dao;
+	private DetailPemesananConverter converter;
+	
+	@Override
+	public DetailPemesananDto Create(DetailPemesananDto detailpemesananDto) {
+		DetailPemesananModel detailpemesanan = converter.createFrom(detailpemesananDto);
+		return converter.createFrom(dao.save(detailpemesanan));
+	}
+
+	@Override
+	public DetailPemesananDto findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<DetailPemesananDto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public DetailPemesananDto update(DetailPemesananDto detailpemesan) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public DetailPemesananRepository getDao() {
+		return dao;
+	}
+
+	public void setDao(DetailPemesananRepository dao) {
+		this.dao = dao;
+	}
+
+	public DetailPemesananConverter getConverter() {
+		return converter;
+	}
+
+	public void setConverter(DetailPemesananConverter converter) {
+		this.converter = converter;
+	}
+    
+}

@@ -1,0 +1,31 @@
+package miniproject.service.converter;
+
+import miniproject.model.PemesananModel;
+import miniproject.repository.dto.PemesananDto;
+
+public class DetailPemesananConverter implements IPemesananConverter {
+
+	
+	public DetailPemesananConverter() {
+	}
+
+	@Override
+	public PemesananDto createFrom(PemesananModel pemesananEntity) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PemesananModel createFrom(PemesananDto pemesananDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public PemesananModel updateEntity(PemesananModel Entity, PemesananDto pemesananDto) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+
+}

@@ -1,0 +1,17 @@
+package miniproject.endpoint.response;
+
+public class PemesananBaseRespon {
+	
+	public String pesan;
+	public PemesananResponse pemesananRespone;
+	
+	
+	public PemesananBaseRespon() {}
+
+
+	public PemesananBaseRespon(PemesananResponse pemesananRespone) {
+		this.pesan = "Pesanan telah diterima dengan nomor register "+pemesananRespone.getIdPemesanan();
+		this.pemesananRespone = pemesananRespone;
+	}
+	
+}

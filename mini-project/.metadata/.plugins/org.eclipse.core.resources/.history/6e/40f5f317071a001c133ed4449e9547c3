@@ -1,0 +1,25 @@
+package miniproject.endpoint.request.converte.impl;
+
+import miniproject.endpoint.request.DetailPemesananCreateRequest;
+import miniproject.endpoint.request.converte.IDetailPemesananCreateConverter;
+import miniproject.repository.dto.DetailPemesananDto;
+
+
+public class DetailPemesananConverter implements IDetailPemesananCreateConverter{
+
+	@Override
+	public DetailPemesananCreateRequest converterToRequest(DetailPemesananDto dto) {
+		DetailPemesananCreateRequest request = new DetailPemesananCreateRequest();
+		request.setIdPemesanan(dto.getIdPemesanan());
+		request.setIdBarang(dto.getIdBarang());
+		request.setJumlahBarang(dto.getJumlah_barang());
+		return request;
+	}
+
+	@Override
+	public DetailPemesananDto converterToDto(DetailPemesananCreateRequest request) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

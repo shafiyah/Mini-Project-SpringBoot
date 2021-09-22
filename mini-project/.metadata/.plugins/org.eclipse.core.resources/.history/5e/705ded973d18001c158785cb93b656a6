@@ -1,0 +1,23 @@
+package miniproject.model;
+
+import java.util.Set;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "pemesanan")
+@JsonIgnoreProperties("hibernateLazyInitializer")
+public class PemesananModel {
+	
+	private int idPemesanan;
+	private String keteranganPemesanan;
+	private String tanggalPemesanan;
+	private PemesanModel pemesanPemesanan;
+	private 
+}

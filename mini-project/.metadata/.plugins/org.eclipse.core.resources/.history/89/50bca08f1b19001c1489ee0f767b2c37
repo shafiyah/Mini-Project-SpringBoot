@@ -1,0 +1,15 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.model.BarangModel;
+import miniproject.model.PemesanModel;
+
+public interface IBarangService {
+
+	public BarangModel save(BarangModel barang);
+	public BarangModel findById(int id);
+	public List<BarangModel> findAll();
+	public void deleteById(int id);
+	public BarangModel update (int id, BarangModel barang);
+}

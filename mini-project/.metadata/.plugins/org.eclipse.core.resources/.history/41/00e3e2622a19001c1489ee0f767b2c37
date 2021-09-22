@@ -1,0 +1,27 @@
+package miniproject.service.converter;
+
+import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import com.springboot.crud.model.Department;
+import com.springboot.crud.repository.dto.DepartmentDto;
+
+import miniproject.model.BarangModel;
+import miniproject.repository.dto.BarangDto;
+
+public interface IBarangConverter { BarangDto createFrom(BarangModel barangEntity);
+	
+	BarangModel createFrom(BarangDto barangDto);
+	
+	BarangModel updateEntity(Department Entity ,DepartmentDto departmentDto);
+	
+	default List<DepartmentDto> createFromEntities(Collection< Department> departments){
+		return departments.stream().map(this::createFrom).collect(Collectors.toList());
+	}
+	
+	default List<Department> createFromDtos(Collection< DepartmentDto> departments){
+		return departments.stream().map(this::createFrom).collect(Collectors.toList());
+	}
+	
+}

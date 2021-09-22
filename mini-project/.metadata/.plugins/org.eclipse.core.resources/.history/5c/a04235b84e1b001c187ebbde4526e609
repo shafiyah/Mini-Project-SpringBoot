@@ -1,0 +1,76 @@
+package miniproject.endpoint.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import miniproject.endpoint.handler.PemesananHandler;
+import miniproject.endpoint.request.DetailPemesananUpdateRequest;
+import miniproject.endpoint.request.PemesanIdRequest;
+import miniproject.endpoint.request.PemesanNameRequest;
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.endpoint.request.PemesananIdRequest;
+import miniproject.endpoint.request.converter.impl.DetailPemesananUpdateConverter;
+import miniproject.endpoint.request.converter.impl.PemesananCreateConvert;
+import miniproject.endpoint.response.DetailPemesananResponse;
+import miniproject.endpoint.response.PemesanResponse;
+import miniproject.endpoint.response.PemesananBaseResponse;
+import miniproject.endpoint.response.PemesananResponse;
+import miniproject.endpoint.response.converter.DetailPemesananResponseConverter;
+import miniproject.endpoint.response.converter.PemesanaResponseConverter;
+import miniproject.repository.dto.DetailPemesananDto;
+import miniproject.repository.dto.PemesananDto;
+import miniproject.service.PemesananService;
+
+
+@RestController()
+public class PemesananController {
+	
+	@Autowired
+	private PemesananCreateConvert pemesananCreateConverter;
+	@Autowired
+	private PemesanaResponseConverter pemesananResponConverter;
+	@Autowired
+	private PemesananHandler pemesanananHandler;
+	@Autowired
+	private PemesananService pemesananService;
+	@Autowired
+	private DetailPemesananUpdateConverter detailPemesananUpdateConverter;
+	@Autowired
+	private DetailPemesananResponseConverter detailPemesananResponseConverter;
+	
+	
+	
+	@PostMapping(value = "/api/pemesanan/create")
+	public ResponseEntity<PemesananBaseResponse> pemesananBarang (@RequestBody PemesananCreateRequest request){
+		PemesananDto pemesananDtos = pemesananCreateConverter.converterToDto(request);
+		PemesananResponse response = pemesananResponConverter.convertToResponses(pemesanananHandler.insert(pemesananDtos));
+		PemesananBaseResponse pemesanaRespon = new PemesananBaseResponse(response);
+		return new ResponseEntity<PemesananBaseResponse>(pemesanaRespon, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/api/pemesanan/updateBarang")
+	public ResponseEntity<DetailPemesananResponse> updatepemesananBarang (@RequestBody DetailPemesananUpdateRequest request){
+		DetailPemesananDto dpemesananDto = detailPemesananUpdateConverter.converterToDto(request);
+		DetailPemesananResponse response = detailPemesananResponseConverter.convertToResponse(pemesanananHandler.updateBarangPemesanan(dpemesananDto));
+		return new ResponseEntity<DetailPemesananResponse>(response, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/api/pemesanan/getByName")
+	public ResponseEntity<List<DetailPemesananResponse>> getbarangPesananbyname (@RequestBody PemesanNameRequest request){
+		List<DetailPemesananResponse> response = detailPemesananResponseConverter.convertToResponses(pemesanananHandler.getBarangPesananbyName(request));
+		return new ResponseEntity<List<DetailPemesananResponse>>(response, HttpStatus.OK);
+	}
+	@PostMapping(value = "/api/pemesanan/getAll")
+	public ResponseEntity<List<PemesanResponse>> getAllPemesanan (@RequestBody PemesananIdRequest request){
+		 List<PemesananResponse> pemesananResponse = pemesananResponConverter.convertToResponses(pemesananService.findAll());
+		return new ResponseEntity<List<PemesanResponse>>(pemesanResponse, HttpStatus.OK);
+	}
+
+
+}

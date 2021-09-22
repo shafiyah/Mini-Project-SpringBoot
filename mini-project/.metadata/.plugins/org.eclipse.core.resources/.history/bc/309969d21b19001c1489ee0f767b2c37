@@ -1,0 +1,15 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.model.DetailPemesananModel;
+
+
+public interface IDetailPemesanan {
+
+	public DetailPemesananModel save(DetailPemesananModel pemesan);
+	public DetailPemesananModel findById(int id);
+	public List<PemesanModel> findAll();
+	public void deleteById(int id);
+	public PemesanModel update (int id, PemesanModel pemesan);
+}

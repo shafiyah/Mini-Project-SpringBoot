@@ -1,0 +1,56 @@
+package miniproject.endpoint.handler;
+
+import java.util.HashSet;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import miniproject.model.DetailPemesananModel;
+import miniproject.model.PemesanModel;
+import miniproject.model.PemesananModel;
+import miniproject.repository.dto.DetailPemesananDto;
+import miniproject.repository.dto.PemesananDto;
+import miniproject.service.BarangService;
+import miniproject.service.DetailPemesanaService;
+import miniproject.service.PemesanService;
+import miniproject.service.PemesananService;
+import miniproject.service.converter.PemesananConverter;
+
+public class PemesananHandler {
+	
+	@Autowired
+	private PemesananService pemesananService;
+	@Autowired
+	private DetailPemesanaService detailPemesananService;
+	@Autowired
+	private PemesanService pemesanService;
+	@Autowired
+	private BarangService barangService;
+	@Autowired
+	private PemesananConverter converter;
+	
+	
+	public PemesananModel insert(PemesananDto pemesananDto) {
+		PemesanModel pemesan= converter.convertPemesanEntity(pemesanService.findById(pemesananDto.getPemesan()));
+		PemesananModel pemesanan = converter.createFrom(pemesananService.Create(pemesananDto));
+		
+		List<DetailPemesananModel> detailPemesananModel = handlerDetailPemesanan(pemesanan.getIdPemesanan(),pemesananDto.getDetailPemesanan()); 
+		
+		pemesanan.setPemesan(pemesan);
+		pemesanan.setDetailPesanan(new HashSet<DetailPemesananModel>(detailPemesananModel));
+		pemesananService.getDao().merge(pemesanan);
+		return pemesanan;
+	}
+	public List<DetailPemesananModel> handlerDetailPemesanan(int id, List<DetailPemesananDto> detailList) {
+		List<DetailPemesananModel> detailPemesanan = detailPemesananService.getConverter().createFromDtos(detailList);
+		for(int i=0;i<detailPemesanan.size();i++) {
+			detailPemesanan.get(i).setBarang(barangService.getConverter().createFrom(barangService.findById(detailList.get(i).getIdBarang())));
+			detailPemesanan.get(i).setPemesanan(pemesananService.getConverter().createFrom(pemesananService.findById(id)));
+		}
+		detailPemesanan.stream().forEach(x -> detailPemesananService.getDao().save(x));
+		return detailPemesananService.getDao().findAll();
+	}
+	
+		
+	
+}

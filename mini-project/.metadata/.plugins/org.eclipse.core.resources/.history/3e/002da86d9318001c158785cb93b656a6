@@ -1,0 +1,42 @@
+package miniproject.repository;
+
+import java.util.List;
+
+import javax.transaction.Transactional;
+
+import miniproject.model.BarangModel;
+
+@Transactional
+public class BarangRepository implements IBarangRepository {
+
+	@Override
+	public BarangModel save(BarangModel barang) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public BarangModel findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BarangModel> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BarangModel merge(BarangModel barang) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}

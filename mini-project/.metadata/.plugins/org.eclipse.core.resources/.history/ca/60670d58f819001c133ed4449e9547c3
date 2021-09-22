@@ -1,0 +1,12 @@
+package miniproject.endpoint.request.converte;
+
+
+import miniproject.endpoint.request.PemesanCreateRequest;
+import miniproject.endpoint.request.PemesanUpdateRequest;
+import miniproject.endpoint.request.PemesananUpdateRequest;
+import miniproject.repository.dto.PemesanDto;
+
+public interface IPemesanUpdateConverter {
+	 PemesananUpdateRequest converterToRequest( PemesanDto dto);
+	 PemesanDto converterToDto( PemesanUpdateRequest request);
+}

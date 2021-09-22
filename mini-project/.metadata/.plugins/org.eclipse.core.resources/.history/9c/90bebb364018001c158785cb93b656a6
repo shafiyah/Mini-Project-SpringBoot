@@ -1,0 +1,35 @@
+package miniproject.model;
+
+import java.util.Set;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "pemesanan")
+@JsonIgnoreProperties("hibernateLazyInitializer")
+public class PemesananModel {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "employee_id")
+	private int idPemesanan;
+	private String keteranganPemesanan;
+	private String tanggalPemesanan;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_pemesan")
+	private PemesanModel pemesanPemesanan;
+	
+}

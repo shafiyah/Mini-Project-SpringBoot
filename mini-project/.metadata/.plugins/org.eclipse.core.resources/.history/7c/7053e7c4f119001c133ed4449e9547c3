@@ -1,0 +1,43 @@
+package miniproject.endpoint.request;
+
+import java.io.Serializable;
+
+public class DetailPemesanaUpdateRequest implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	private int idDetailPemesanan;
+	private int idPemesanan;
+	private int idbarang;
+	private int jumlahBarang;
+	public DetailPemesanaUpdateRequest(int idDetailPemesanan, int idPemesanan, int idbarang, int jumlahBarang) {
+		super();
+		this.idDetailPemesanan = idDetailPemesanan;
+		this.idPemesanan = idPemesanan;
+		this.idbarang = idbarang;
+		this.jumlahBarang = jumlahBarang;
+	}
+	public int getIdDetailPemesanan() {
+		return idDetailPemesanan;
+	}
+	public void setIdDetailPemesanan(int idDetailPemesanan) {
+		this.idDetailPemesanan = idDetailPemesanan;
+	}
+	public int getIdPemesanan() {
+		return idPemesanan;
+	}
+	public void setIdPemesanan(int idPemesanan) {
+		this.idPemesanan = idPemesanan;
+	}
+	public int getIdbarang() {
+		return idbarang;
+	}
+	public void setIdbarang(int idbarang) {
+		this.idbarang = idbarang;
+	}
+	public int getJumlahBarang() {
+		return jumlahBarang;
+	}
+	public void setJumlahBarang(int jumlahBarang) {
+		this.jumlahBarang = jumlahBarang;
+	}
+}

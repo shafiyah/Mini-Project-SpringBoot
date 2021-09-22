@@ -1,0 +1,9 @@
+package snippet;
+
+public class Snippet {
+	public static void main(String[] args) {
+		server.port=8092
+		spring.jackson.serialization.FAIL_ON_EMPTY_BEANS=false
+	}
+}
+

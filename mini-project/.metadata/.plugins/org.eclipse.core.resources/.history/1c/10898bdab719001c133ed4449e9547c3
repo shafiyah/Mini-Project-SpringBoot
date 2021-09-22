@@ -1,0 +1,38 @@
+package miniproject.service;
+
+import java.util.List;
+
+import miniproject.repository.dto.BarangDto;
+
+public class BarangService implements IBarangService{
+
+	@Override
+	public BarangDto Create(BarangDto barang) {
+		
+		return null;
+	}
+
+	@Override
+	public BarangDto findById(int id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<BarangDto> findAll() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public BarangDto update(int id, BarangDto barang) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+}

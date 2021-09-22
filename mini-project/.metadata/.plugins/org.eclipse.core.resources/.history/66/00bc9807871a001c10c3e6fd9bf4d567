@@ -1,0 +1,5 @@
+package miniproject.endpoint.response.converter;
+
+public interface IPemesananResponse {
+
+}

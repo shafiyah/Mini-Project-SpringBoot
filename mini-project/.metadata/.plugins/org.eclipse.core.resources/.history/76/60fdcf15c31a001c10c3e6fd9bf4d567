@@ -1,0 +1,14 @@
+package miniproject.endpoint.request.converter;
+
+import java.util.List;
+
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.endpoint.request.converter.impl.DetailPemesanan;
+import miniproject.repository.dto.DetailPemesananDto;
+import miniproject.repository.dto.PemesananDto;
+
+public interface IPemesananCreateConverter {
+	 PemesananCreateRequest converterToRequest( PemesananDto dto);
+	 PemesananDto converterToDto( PemesananCreateRequest request);
+	List<DetailPemesananDto> toPemesanantoList(List<DetailPemesananDto> request);
+}

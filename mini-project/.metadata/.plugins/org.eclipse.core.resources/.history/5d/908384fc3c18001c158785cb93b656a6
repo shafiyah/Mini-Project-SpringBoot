@@ -1,0 +1,29 @@
+package miniproject.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name="detail_Pesanan")
+@JsonIgnoreProperties("hibernateLazyInitializer")
+
+public class DetailPesanan {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_detail_pesanan")
+	private int id_detailPesanan;
+	@Column(name = "id_pesanan")
+	private int id_pesanan;
+	@Column(name = "jumlah_barang")
+	private int jumlah_barang;
+	
+}

@@ -1,0 +1,69 @@
+package miniproject.repository.dto;
+
+import java.io.Serializable;
+import java.util.Set;
+
+
+import miniproject.model.DetailPemesananModel;
+import miniproject.model.PemesanModel;
+
+public class PemesananDto implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	private int idPemesanan;
+	private String keteranganPemesanan;
+	private String tanggalPemesanan;
+	private PemesanModel pemesan;
+	private Set<DetailPemesananModel> detailPemesanan;
+	
+	public PemesananDto() {
+	}
+
+	public PemesananDto(String keteranganPemesanan, String tanggalPemesanan, PemesanModel pemesan) {
+		super();
+		this.keteranganPemesanan = keteranganPemesanan;
+		this.tanggalPemesanan = tanggalPemesanan;
+		this.pemesan = pemesan;
+	}
+
+	public int getIdPemesanan() {
+		return idPemesanan;
+	}
+
+	public void setIdPemesanan(int idPemesanan) {
+		this.idPemesanan = idPemesanan;
+	}
+
+	public String getKeteranganPemesanan() {
+		return keteranganPemesanan;
+	}
+
+	public void setKeteranganPemesanan(String keteranganPemesanan) {
+		this.keteranganPemesanan = keteranganPemesanan;
+	}
+
+	public String getTanggalPemesanan() {
+		return tanggalPemesanan;
+	}
+
+	public void setTanggalPemesanan(String tanggalPemesanan) {
+		this.tanggalPemesanan = tanggalPemesanan;
+	}
+
+	public Set<DetailPemesananModel> getDetailPemesanan() {
+		return detailPemesanan;
+	}
+
+	public void setDetailPemesanan(Set<DetailPemesananModel> detailPemesanan) {
+		this.detailPemesanan = detailPemesanan;
+	}
+
+	public PemesanModel getPemesan() {
+		return pemesan;
+	}
+
+	public void setPemesan(PemesanModel pemesan) {
+		this.pemesan = pemesan;
+	}
+	
+}

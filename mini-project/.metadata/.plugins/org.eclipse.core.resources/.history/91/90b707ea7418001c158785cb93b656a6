@@ -1,0 +1,18 @@
+package miniproject.repository.dto;
+
+import java.io.Serializable;
+import java.util.Set;
+
+
+import miniproject.model.PemesananModel;
+
+public class PemesanDto implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	private int idPemesan;
+	private String namaPemesan;
+	private String alamatPemesan;
+	private String telphonePemesan;
+	private Set<PemesananModel> pemesanan;
+
+}

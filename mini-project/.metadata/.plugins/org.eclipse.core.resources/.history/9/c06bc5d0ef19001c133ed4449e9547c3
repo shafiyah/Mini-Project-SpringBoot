@@ -1,0 +1,11 @@
+package miniproject.endpoint.request.converte;
+
+import miniproject.endpoint.request.BarangCreateRequest;
+import miniproject.endpoint.request.PemesanCreateRequest;
+import miniproject.repository.dto.BarangDto;
+import miniproject.repository.dto.PemesananDto;
+
+public interface IPemesananCreateConverter {
+	 PemesanCreateRequest converterToRequest( PemesananDto dto);
+	 PemesananDto converterToDto( BarangCreateRequest request);
+}

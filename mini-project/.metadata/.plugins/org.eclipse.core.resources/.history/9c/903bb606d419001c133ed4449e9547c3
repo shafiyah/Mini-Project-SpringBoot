@@ -1,0 +1,14 @@
+package miniproject.endpoint.request;
+
+import java.io.Serializable;
+
+public class BarangCreateRequest implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
+	private String namaBarang; 
+	private String deskripsiBarang;
+	private String stock;
+	
+	
+}

@@ -1,0 +1,47 @@
+package miniproject.endpoint.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import miniproject.endpoint.handler.PemesananHandler;
+import miniproject.endpoint.request.PemesananCreateRequest;
+import miniproject.endpoint.request.converter.impl.PemesananCreateConvert;
+import miniproject.endpoint.request.converter.impl.PemesananUpdateConverter;
+import miniproject.endpoint.response.PemesananBaseRespon;
+import miniproject.endpoint.response.PemesananResponse;
+import miniproject.endpoint.response.converter.PemesanaResponseConverter;
+import miniproject.repository.dto.PemesananDto;
+import miniproject.service.PemesananService;
+
+
+@RestController()
+public class PemesananController {
+	
+	@Autowired
+	private PemesananService service;
+	@Autowired
+	private PemesananCreateConvert pemesananCreateConverter;
+	@Autowired
+	private PemesananUpdateConverter pemesananUpdateConverter;
+	@Autowired
+	private PemesanaResponseConverter pemesananResponConverter;
+	@Autowired
+	private PemesananHandler pemesanananHandler;
+	
+	@PostMapping(value = "/api/pemesanan/create")
+	public ResponseEntity<PemesananBaseRespon> pemesananBarang (@RequestBody PemesananCreateRequest request){
+		System.out.println(request.getBarangPemesanan());
+		PemesananDto pemesananDtos = pemesananCreateConverter.converterToDto(request);
+		PemesananResponse response = pemesananResponConverter.convertToResponses(pemesanananHandler.insert(pemesananDtos));
+		PemesananBaseRespon pemesanaRespon = 
+		return new ResponseEntity<PemesananBaseRespon>(new PemesananBaseRespon(response), HttpStatus.OK);
+	}
+
+
+}

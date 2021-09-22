@@ -1,0 +1,6 @@
+package miniproject.endpoint.request;
+
+public class DetailPemesananCreateRequest {
+
+	
+}

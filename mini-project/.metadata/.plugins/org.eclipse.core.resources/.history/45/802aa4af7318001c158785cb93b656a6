@@ -1,0 +1,15 @@
+package miniproject.repository.dto;
+
+import java.io.Serializable;
+
+
+
+public class DetailPemesananDto implements Serializable {
+	
+	private static final long serialVersionUID = 1L;
+	private int idDetailpemesanan;
+	private PemesananModel pemesanan;
+	private BarangModel barang;
+	private int jumlah_barang;
+
+}

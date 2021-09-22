@@ -1,0 +1,52 @@
+package miniproject.service.converter;
+
+import miniproject.model.PemesanModel;
+import miniproject.model.PemesananModel;
+import miniproject.repository.dto.PemesanDto;
+import miniproject.repository.dto.PemesananDto;
+
+public class PemesananConverter implements IPemesananConverter{
+
+	@Override
+	public PemesananDto createFrom(PemesananModel pemesananEntity) {
+		PemesananDto pemesananDto = new PemesananDto();
+		pemesananDto.setIdPemesanan(pemesananEntity.getPemesanId());
+		pemesananDto.setKeteranganPemesanan(pemesananEntity.getKeteranganPemesanan());
+		pemesananDto.setPemesan(convertPemesanDto(pemesananEntity.getPemesanPemesanan()));
+		return pemesananDto;
+	}
+
+	@Override
+	public PemesananModel createFrom(PemesananDto pemesananDto) {
+		return updateEntity(new PemesananModel(), pemesananDto);
+	}
+
+	@Override
+	public PemesananModel updateEntity(PemesananModel pemesanan, PemesananDto pemesananDto) {
+		pemesanan.setIdPemesanan(pemesananDto.getIdPemesanan());
+		pemesanan.setKeteranganPemesanan(pemesananDto.getKeteranganPemesanan());
+		pemesanan.setPemesan(convertPemesanEntiry(pemesananDto.getPemesan()));
+		ClassUtils.setIfNotNull(
+				 pemesananDto::getDetailPemesanan, pemesanan::setDetailPesanan); 
+		return pemesanan;
+	}
+	
+	public PemesanDto convertPemesanDto(PemesanModel pemesanEntity) {
+		PemesanDto pemesanDto = new PemesanDto();
+		pemesanDto.setAlamatPemesan(pemesanEntity.getAlamatPemesan());
+		pemesanDto.setIdPemesan(pemesanEntity.getIdPemesan());
+		pemesanDto.setNamaPemesan(pemesanEntity.getNamaPemesan());
+		pemesanDto.setTelphonePemesan(pemesanEntity.getTelphonePemesan());	
+		return pemesanDto;
+	}
+	
+	public PemesanModel convertPemesanEntiry(PemesanDto pemesanDto) {
+		PemesanModel pemesan = new PemesanModel();
+		pemesan.setAlamatPemesan(pemesanDto.getAlamatPemesan());
+		pemesan.setIdPemesan(pemesanDto.getIdPemesan());
+		pemesan.setNamaPemesan(pemesanDto.getNamaPemesan());
+		pemesan.setTelphonePemesan(pemesanDto.getTelphonePemesan());	
+		return pemesan;
+	}
+
+}
